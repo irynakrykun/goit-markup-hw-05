@@ -10,6 +10,7 @@
   --items: 3;
   --color-social-link: #afb1b8;
   --animation: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --background-color-overlay-portfolio: rgba(33, 150, 243, 0.9);
 }
 /*другий колір тексту #757575/*/
 /*білий колір bgc/ --#FFFFFF*/
@@ -280,33 +281,25 @@ img {
   gap: 30px;
 }
 
-.work-thumb {
+.work-item {
   position: relative;
 }
-.work-thumb::after {
-  display: inline-block;
+
+.work-list-text {
   position: absolute;
+  bottom: 0;
   width: 100%;
   height: 70px;
-  content: '';
   background: rgba(47, 48, 58, 0.8);
-  bottom: 0;
-}
-.work-list-text {
-  width: 100%;
-  height: 16px;
-  z-index: 10;
 
-  position: absolute;
-  bottom: 27px;
-  left: 83px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   font-family: 'Roboto';
-  font-style: normal;
   font-weight: 700;
-  font-size: 14px;
   line-height: 1.14;
-  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--primery-bgc-color);
 }
@@ -430,6 +423,10 @@ img {
   line-height: 1.71;
   letter-spacing: 0.03em;
 }
+address .link {
+  transition: color var(--animation);
+}
+
 address .link:hover,
 address .link:focus {
   color: var(--accent-color);
@@ -476,7 +473,7 @@ address .link:focus {
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--primery-bgc-color);
 
-  transition: color var(--animation), background-color var(--animation);
+  transition: background-color var(--animation);
 }
 
 .footer-icon {
@@ -496,8 +493,10 @@ address .link:focus {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 100;
+  opacity: 1;
+  visibility: visible;
 
-  transition: opasity var(--animation), visibilyty var(--animation);
+  transition: opacity var(--animation), visibility var(--animation);
 }
 .backdrop.is-hidden {
   opacity: 0;
@@ -513,13 +512,15 @@ address .link:focus {
   width: 528px;
   height: 581px;
   background-color: var(--primery-bgc-color);
+  opacity: 1;
   border-radius: 4px;
 
-  transition: transform 400ms ease-in-out 200ms, opasity 400ms ease-in-out 200ms;
+  transition: transform var(--animation), opacity var(--animation);
 }
 
 .backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0.2) rotate(1turn);
+  opacity: 0;
 }
 .modal-btn {
   position: absolute;
@@ -624,15 +625,15 @@ address .link:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 63px, 24px;
+  padding: 63px 24px;
 
-  background: rgba(33, 150, 243, 0.9);
+  background: var(--background-color-overlay-portfolio);
 
   backdrop-filter: blur(3px);
 
   transform: translateY(100%);
 
-  transition: transform 500ms ease-in-out;
+  transition: transform var(--animation);
 }
 
 .portfolio-overlay-text {
@@ -645,6 +646,7 @@ address .link:focus {
   color: var(--primery-bgc-color);
   text-align: center;
 }
-.portfolio-link:hover .portfolio-overlay {
+.portfolio-link:hover .portfolio-overlay,
+.portfolio-link:focus .portfolio-overlay {
   transform: translateY(0);
 }
